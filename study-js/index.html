@@ -3,16 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Study JS</title>
+    <style>
+        h4 {
+          font-size: 18pt;
+          color: blue;
+        }
+    </style>
     <script type="text/javascript">
-        let counter = 0;
-        let spanCounter = document.querySelector("#counter");
-        setInterval( function(){
-            counter++;
-            spanCounter.innerHTML = counter.toString();
-        } , 1000);
+        // JavaScript: i) Functional -> Higher-Order Function : setInterval
+        //            ii) Asynchronous Function
+        //           iii) Event-Driven
+        //         JS Engine: Single Execution Thread -> Event Queue -> Event -> Callback Function
+        window.onload = app; // app function --> ONLOAD_EVENT
+        function app() {
+            let counter = 0;
+            let spanCounter = document.querySelector("#counter");
+            setInterval(timeout_callback, 1000); // ON_TIMEOUT_EVENT -> timeout_callback
+            let timeout_callback = function () {
+                counter++;
+                spanCounter.innerHTML = counter.toString();
+            };
+        }
     </script>
 </head>
 <body>
-   <div><h4>Counter: <span id="counter">0</span></h4></div>
+<div><h4>Counter: <span id="counter">0</span></h4></div>
 </body>
 </html>
