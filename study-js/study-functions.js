@@ -19,3 +19,11 @@ function gun(x, y, z) {
     }
     return x * y + z;
 }
+
+let sun = function (x){ return x * x * x; }
+// Functional Programming
+//  i) Higher-Order Function
+// ii) Lambda Expression / Arrow Function
+let run = (x) => { return x * x * x; } // lambda expression
+let tun = x => x * x + x // lambda expression
+
