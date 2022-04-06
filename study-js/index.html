@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Study JS</title>
+    <script type="text/javascript">
+        let counter = 0;
+        let spanCounter = document.querySelector("#counter");
+        setInterval( function(){
+            counter++;
+            spanCounter.innerHTML = counter.toString();
+        } , 1000);
+    </script>
+</head>
+<body>
+   <div><h4>Counter: <span id="counter">0</span></h4></div>
+</body>
+</html>
