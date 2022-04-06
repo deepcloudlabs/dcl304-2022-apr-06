@@ -4,27 +4,9 @@
     <meta charset="UTF-8">
     <title>Study JS</title>
     <style>
-        h4 {
-          font-size: 18pt;
-          color: blue;
-        }
+        @import "css/counter.css";
     </style>
-    <script type="text/javascript">
-        // JavaScript: i) Functional -> Higher-Order Function : setInterval
-        //            ii) Asynchronous Function
-        //           iii) Event-Driven
-        //         JS Engine: Single Execution Thread -> Event Queue -> Event -> Callback Function
-        window.onload = app; // app function --> ONLOAD_EVENT
-        function app() {
-            function timeout_callback() {
-                counter++;
-                spanCounter.innerHTML = counter.toString();
-            };
-            let counter = 0;
-            let spanCounter = document.querySelector("#counter");
-            setInterval(timeout_callback, 1000); // ON_TIMEOUT_EVENT -> timeout_callback
-        }
-    </script>
+    <script type="text/javascript" src="js/counter.js"></script>
 </head>
 <body>
 <div><h4>Counter: <span id="counter">0</span></h4></div>
