@@ -4,8 +4,8 @@ import {GameStatistics} from "./statistics.js";
 import {Game} from "./mastermind.js";
 
 export class GameViewModel {
-    constructor() {
-        this.game = new Game();
+    constructor(router) {
+        this.game = new Game(router);
         this.statistics = new GameStatistics();
     }
 

@@ -2,7 +2,7 @@
 import {Move} from "./move.js";
 
 export class Game {
-    constructor() {
+    constructor(router) {
         this.gameLevel = 3;
         this.secret = this.createSecret(3);
         this.tries = 0;
@@ -11,6 +11,7 @@ export class Game {
         this.counter = this.createInitialCounter(3);
         this.maxTries = this.createMaxTries(3);
         this.lives = 3;
+        this.router = router;
     }
 
     play = () => {
@@ -18,8 +19,9 @@ export class Game {
         this.guess = Number(this.guess);
         if (this.guess === this.secret) {
             this.gameLevel++;
+            this.lives++;
             if (this.gameLevel === 11){
-                //TODO: Player wins!
+                this.router.route("wins");
             } else {
                 this.initializeGame(this.gameLevel);
             }
@@ -27,7 +29,7 @@ export class Game {
             if (this.tries > this.maxTries) {
                 this.lives--;
                 if (this.lives === 0) {
-                    //TODO: player loses the game!
+                    this.router.route("loses");
                 } else {
                     this.initializeGame(this.gameLevel);
                 }
@@ -45,7 +47,9 @@ export class Game {
             if (digits.includes(digit)) continue;
             digits.push(digit);
         }
-        return digits.reduce((number, digit) => 10 * number + digit, 0);
+        let theSecret = digits.reduce((number, digit) => 10 * number + digit, 0);
+        console.log(theSecret);
+        return theSecret;
     }
 
     createRandomDigit = (min, max) => {
@@ -78,7 +82,7 @@ export class Game {
         if (this.counter <= 0){
             this.lives--;
             if (this.lives === 0) {
-                //TODO: player loses the game!
+                this.router.route("loses");
             } else {
                 this.initializeGame(this.gameLevel);
             }
