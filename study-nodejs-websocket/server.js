@@ -5,3 +5,4 @@ setInterval( () => {
         .then( res => res.json())
         .then( ticker => console.log(ticker));
 }, 200);
+

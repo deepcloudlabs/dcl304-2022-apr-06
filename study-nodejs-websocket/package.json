@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start-http": "nodemon server.js",
+    "start-ws": "nodemon server-ws.js"
   },
   "dependencies": {
     "nodemon": "^2.0.15",
