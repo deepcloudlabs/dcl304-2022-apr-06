@@ -1,4 +1,4 @@
-let emptyElement = (element) => {
+export function emptyElement(element){
     let node = element;
     while (element.hasChildNodes()) {
         if (node.hasChildNodes()) {

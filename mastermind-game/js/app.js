@@ -1,4 +1,7 @@
-class App {
+import {GameViewModel} from "./game.js";
+import {emptyElement} from "./utils.js";
+
+export class App {
     constructor() {
         this.gameViewModel = new GameViewModel();
         //region DOM API : Html Element Selection in View

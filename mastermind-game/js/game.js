@@ -1,6 +1,9 @@
 // Model: Game, GameStatistics
 // View : game.html (HTML/CSS)
-class GameViewModel {
+import {GameStatistics} from "./statistics.js";
+import {Game} from "./mastermind.js";
+
+export class GameViewModel {
     constructor() {
         this.game = new Game();
         this.statistics = new GameStatistics();

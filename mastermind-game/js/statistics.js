@@ -1,5 +1,5 @@
 // MVC's Model
-class GameStatistics{
+export class GameStatistics{
     constructor() {
         this.wins = 0;
         this.loses= 0;

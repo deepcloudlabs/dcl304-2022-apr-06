@@ -1,5 +1,7 @@
 // MVC's Model
-class Game {
+import {Move} from "./move.js";
+
+export class Game {
     constructor() {
         this.gameLevel = 3;
         this.secret = this.createSecret(3);

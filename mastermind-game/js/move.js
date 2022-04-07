@@ -1,4 +1,4 @@
-class Move {
+export class Move {
     constructor(guess, secret) {
         this.guess = guess;
         this.perfectMatch = 0;
