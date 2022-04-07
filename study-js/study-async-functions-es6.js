@@ -1,4 +1,4 @@
-function sync_get_min(numbers){
+async function async_get_min(numbers){
         if (numbers.length === 0)
             throw "Empty array has no minimum";
         let minValue= Number.MAX_VALUE;
@@ -9,36 +9,24 @@ function sync_get_min(numbers){
         return minValue;
 }
 
-function async_get_min(numbers){
-    return new Promise((resolve,reject) => {
+let async_fun = async (numbers) => {
         if (numbers.length === 0)
-            reject("Empty array has no minimum");
+            throw "Empty array has no minimum";
         let minValue= Number.MAX_VALUE;
         for (let number of numbers){
             if (number < minValue)
                 minValue = number;
         }
-        setTimeout(()=>{
-            resolve(minValue);
-        }, Math.floor(Math.random()*5000) + 1000)
-    });
+        return minValue;
 }
 
 let myNumbers = [30,29,28,27,26];
-//console.log(sync_get_min(myNumbers));
-//console.log("Hello Mars!");
-// console.log(sync_get_min([]));
 
 for (let i=0;i<10;++i){
     let [...another_array] = [...myNumbers];
     another_array.push(i);
-    /*
-    async_get_min(another_array).then(
-        minValue => console.log(minValue),
-        reason => console.error(reason)
-    );
-    */
-    async_get_min(another_array).then(console.log, console.error );
+    async_fun(another_array).then(console.log, console.error );
+    // async_get_min(another_array).then(console.log, console.error );
 }
 console.log("Hello Mars!");
 /*
