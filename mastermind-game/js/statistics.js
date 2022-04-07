@@ -16,4 +16,10 @@ export class GameStatistics {
             this.total++;
         }, false);
     }
+
+    loadFromStore = (statistics) => {
+        this.wins = statistics.wins;
+        this.loses = statistics.loses;
+        this.total = statistics.total;
+    }
 }

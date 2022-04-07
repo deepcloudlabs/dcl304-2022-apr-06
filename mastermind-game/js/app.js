@@ -6,7 +6,10 @@ import {Router} from "./router.js";
     App creates a ViewModel and connects View to both ViewModel and Model.
     @author Binnur Kurt <binnur.kurt@gmail.com>
  */
+const storeKey = "mastermind-store";
+
 export class App {
+
     constructor(router) {
         this.gameViewModel = new GameViewModel(router);
     }
@@ -27,12 +30,14 @@ export class App {
 
         setInterval(() => {
             this.gameViewModel.game.countdown();
+            this.saveToStore();
             this.updateView();
         }, 1000);
 
         this.playButton.addEventListener('click', (event) => {
             let guess = this.guessInputText.value;
             this.gameViewModel.play(guess);
+            this.saveToStore();
             this.updateView();
         });
 
@@ -45,7 +50,7 @@ export class App {
         this.winsBadge.innerHTML = `${this.gameViewModel.statistics.wins} of ${this.gameViewModel.statistics.total}`;
         this.losesBadge.innerHTML = `${this.gameViewModel.statistics.loses} of ${this.gameViewModel.statistics.total}`;
         this.counterBadge.innerHTML = this.gameViewModel.game.counter;
-        this.counterProgressBar.style.width = `${this.gameViewModel.game.counter*5/3}%`;
+        this.counterProgressBar.style.width = `${100 * this.gameViewModel.game.counter / this.gameViewModel.game.maxCounter}%`;
 
         if (this.divLivesIcons.childNodes.length !== this.gameViewModel.game.lives) {
             emptyElement(this.divLivesIcons);
@@ -67,13 +72,33 @@ export class App {
             cellEvaluation.appendChild(document.createTextNode(move.evaluation));
         }
     }
+
+    loadFromStore = (store) => {
+        this.gameViewModel.game.loadFromStore(store.game);
+        this.gameViewModel.statistics.loadFromStore(store.statistics);
+        this.updateView();
+    }
+
+    saveToStore = () => {
+        localStorage.setItem(storeKey, JSON.stringify({
+            game: this.gameViewModel.game,
+            statistics: this.gameViewModel.statistics
+        }));
+    }
 }
 
 let router = new Router({
     "loses": "gameover.html",
     "wins": "wins.html"
 });
+
 let app = new App(router);
+
 window.onload = () => {
     app.init();
+    let store = localStorage.getItem(storeKey);
+    if (store !== null) {
+        store = JSON.parse(store);
+        app.loadFromStore(store);
+    }
 }

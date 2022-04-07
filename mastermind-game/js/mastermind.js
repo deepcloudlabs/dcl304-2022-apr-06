@@ -12,6 +12,7 @@ export class Game {
         this.guess = 123;
         this.moves = [];
         this.counter = this.createInitialCounter(3);
+        this.maxCounter = this.createInitialCounter(3);
         this.maxTries = this.createMaxTries(3);
         this.lives = 3;
         this.router = router;
@@ -52,9 +53,7 @@ export class Game {
             if (digits.includes(digit)) continue;
             digits.push(digit);
         }
-        let theSecret = digits.reduce((number, digit) => 10 * number + digit, 0);
-        console.log(theSecret);
-        return theSecret;
+        return digits.reduce((number, digit) => 10 * number + digit, 0);
     }
 
     createRandomDigit = (min, max) => {
@@ -79,6 +78,7 @@ export class Game {
         this.secret = this.createSecret(gameLevel);
         this.tries = 0;
         this.counter = this.createInitialCounter(gameLevel);
+        this.maxCounter = this.createInitialCounter(gameLevel);
         this.maxTries = this.createMaxTries(gameLevel);
     }
 
@@ -93,5 +93,17 @@ export class Game {
                 this.initializeGame(this.gameLevel);
             }
         }
+    }
+
+    loadFromStore = (game) => {
+        this.gameLevel = game.gameLevel;
+        this.secret = game.secret;
+        this.tries = game.tries;
+        this.guess = game.guess;
+        this.moves = game.moves;
+        this.counter = game.counter;
+        this.maxCounter = game.maxCounter;
+        this.maxTries = game.maxTries;
+        this.lives = game.lives;
     }
 }
