@@ -70,4 +70,16 @@ class Game {
         this.counter = this.createInitialCounter(gameLevel);
         this.maxTries = this.createMaxTries(gameLevel);
     }
+
+    countdown = () => {
+        this.counter--;
+        if (this.counter <= 0){
+            this.lives--;
+            if (this.lives === 0) {
+                //TODO: player loses the game!
+            } else {
+                this.initializeGame(this.gameLevel);
+            }
+        }
+    }
 }
