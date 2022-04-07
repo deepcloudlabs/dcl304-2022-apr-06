@@ -8,12 +8,15 @@
         @import "css/bootstrap-theme.css";
     </style>
     <script src="js/lib/bootstrap.js"></script>
+    <script src="js/utils.js"></script>
     <script src="js/move.js"></script>
     <script src="js/mastermind.js"></script>
     <script src="js/statistics.js"></script>
     <script src="js/game.js"></script>
+    <script src="js/app.js"></script>
 </head>
 <body>
+<p></p>
 <div class="container">
     <div class="card">
         <div class="card-header">
@@ -42,9 +45,29 @@
                        id="guess"
                        value="123"
                        class="form-control"></input>
-                <button class="btn btn-success">Play</button>
+                <button id="playButton" class="btn btn-success">Play</button>
             </div>
         </div>
+    </div>
+    <p></p>
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Player's Moves</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-hover table-striped table-responsive">
+                <thead>
+                    <tr>
+                       <th>Guess</th>
+                       <th>Evaluation</th>
+                    </tr>
+                </thead>
+                <tbody id="moves">
+
+                </tbody>
+            </table>
+        </div>
+
     </div>
 </div>
 </body>
