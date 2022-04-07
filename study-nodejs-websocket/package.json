@@ -1,0 +1,17 @@
+{
+  "name": "study-nodejs-websocket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.15",
+    "ws": "^8.5.0",
+    "node-fetch": "^2.6.7"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
