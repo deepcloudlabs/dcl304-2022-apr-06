@@ -21,6 +21,8 @@ export class App {
         this.movesTableBody = document.querySelector("#moves");
         this.divLivesIcons = document.querySelector("#lives-icons");
         this.counterProgressBar = document.querySelector("#counterProgressBar");
+        this.winsBadge = document.querySelector("#wins");
+        this.losesBadge = document.querySelector("#loses");
         //endregion
 
         setInterval(() => {
@@ -40,6 +42,8 @@ export class App {
         // Heavily uses DOM API
         this.gameLevel.innerHTML = this.gameViewModel.game.gameLevel;
         this.triesBadge.innerHTML = this.gameViewModel.game.tries;
+        this.winsBadge.innerHTML = `${this.gameViewModel.statistics.wins} of ${this.gameViewModel.statistics.total}`;
+        this.losesBadge.innerHTML = `${this.gameViewModel.statistics.loses} of ${this.gameViewModel.statistics.total}`;
         this.counterBadge.innerHTML = this.gameViewModel.game.counter;
         this.counterProgressBar.style.width = `${this.gameViewModel.game.counter*5/3}%`;
 

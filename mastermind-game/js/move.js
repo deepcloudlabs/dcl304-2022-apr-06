@@ -1,3 +1,7 @@
+/*
+    Move Model
+    @author Binnur Kurt <binnur.kurt@gmail.com>
+ */
 export class Move {
     constructor(guess, secret) {
         this.guess = guess;

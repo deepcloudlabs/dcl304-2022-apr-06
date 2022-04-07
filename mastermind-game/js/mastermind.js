@@ -1,6 +1,9 @@
-// MVC's Model
 import {Move} from "./move.js";
 
+/*
+    Game Model
+    @author Binnur Kurt <binnur.kurt@gmail.com>
+ */
 export class Game {
     constructor(router) {
         this.gameLevel = 3;
@@ -20,6 +23,7 @@ export class Game {
         if (this.guess === this.secret) {
             this.gameLevel++;
             this.lives++;
+            window.dispatchEvent(new CustomEvent("wins"));
             if (this.gameLevel === 11){
                 this.router.route("wins");
             } else {
@@ -28,6 +32,7 @@ export class Game {
         } else {
             if (this.tries > this.maxTries) {
                 this.lives--;
+                window.dispatchEvent(new CustomEvent("loses"));
                 if (this.lives === 0) {
                     this.router.route("loses");
                 } else {
@@ -81,6 +86,7 @@ export class Game {
         this.counter--;
         if (this.counter <= 0){
             this.lives--;
+            window.dispatchEvent(new CustomEvent("loses"));
             if (this.lives === 0) {
                 this.router.route("loses");
             } else {

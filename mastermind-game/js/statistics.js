@@ -1,8 +1,19 @@
-// MVC's Model
-export class GameStatistics{
+/*
+    Game Statistics Model
+    @author Binnur Kurt <binnur.kurt@gmail.com>
+ */
+export class GameStatistics {
     constructor() {
         this.wins = 0;
-        this.loses= 0;
+        this.loses = 0;
         this.total = 0;
+        window.addEventListener("wins", (event) => {
+            this.wins++;
+            this.total++;
+        }, false);
+        window.addEventListener("loses", (event) => {
+            this.loses++;
+            this.total++;
+        }, false);
     }
 }
