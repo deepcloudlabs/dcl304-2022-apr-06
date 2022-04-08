@@ -9,4 +9,12 @@ class Employee {
         this.department= ko.observable("IT");
         this.fulltime= ko.observable(true);
     }
+
+    update = (employee) => {
+        for (let field in employee){
+            if (this.hasOwnProperty(field)){
+                this[field](employee[field]);
+            }
+        }
+    }
 }

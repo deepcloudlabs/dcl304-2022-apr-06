@@ -85,6 +85,9 @@ app.post('/employees', (req, res) => {
         if (err) {
             res.status(400).send({"status": err});
         } else {
+            for (let socket of sockets){
+                socket.emit("hire", emp);
+            }
             res.status(200).send({"status": "ok"});
         }
     });
@@ -164,6 +167,9 @@ app.delete('/employees/:id', (req, res) => {
                 if (employee === null) {
                     res.status(404).send({"status": "cannot find employee to fire."});
                 } else {
+                    for (let socket of sockets){
+                        socket.emit("fire", employee);
+                    }
                     res.status(200).send(employee);
                 }
             }
@@ -173,4 +179,20 @@ app.delete('/employees/:id', (req, res) => {
 //endregion
 
 let server = app.listen(port);
+//region WebSocketIO
+let io= require("socket.io").listen(server);
+io.set("origins", "*:*");
+const sockets = [];
+io.on("connect", socket => {
+    console.log("A new ws connection is now open.")
+    sockets.push(socket);
+    socket.on("disconnect", () => {
+        let index = sockets.indexOf(socket);
+        if (index>=0){
+            console.log("A ws connection is now closed.")
+            sockets.splice(index,1);
+        }
+    });
+})
+//endregion
 console.log(`Server is running at ${port}.`);

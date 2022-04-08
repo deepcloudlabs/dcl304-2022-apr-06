@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>HR Frontend Admin Page</title>
-    <style type="text/css">
+    <style>
         @import url("css/bootstrap.css");
         @import url("css/bootstrap-theme.css");
         @import url("css/drag-and-drop.css");
@@ -12,6 +12,7 @@
     <script type="text/javascript" src="js/lib/jquery-1.11.3.js"></script>
     <script type="text/javascript" src="js/lib/i18next-1.7.7.js"></script>
     <script type="text/javascript" src="js/lib/bootstrap.js"></script>
+    <script type="text/javascript" src="js/lib/socket.io.js"></script>
     <script type="text/javascript" src="js/lib/toastr.min.js"></script>
     <script type="text/javascript" src="js/lib/knockout-3.4.2.debug.js"></script>
     <script type="text/javascript" src="js/lib/knockout-localization.js"></script>
@@ -111,9 +112,12 @@
                 <div class="form-group">
                     <button data-bind="click: hireEmployee"
                             class="btn btn-info">Add</button>
-                    <button class="btn btn-warning">Update</button>
-                    <button class="btn btn-danger">Delete</button>
-                    <button class="btn btn-success">Find</button>
+                    <button data-bind="click: updateEmployee"
+                            class="btn btn-warning">Update</button>
+                    <button data-bind="click: fireEmployeeByIdentity"
+                            class="btn btn-danger">Delete</button>
+                    <button data-bind="click: findEmployeeByIdentity"
+                            class="btn btn-success">Find</button>
                     <button data-bind="click: findAllEmployees"
                             class="btn btn-success">Find All</button>
                 </div>
@@ -150,7 +154,8 @@
                             <td data-bind="text: emp.fulltime ? 'FULL-TIME': 'PART-TIME'"></td>
                             <td data-bind="text: emp.birthYear"></td>
                             <td data-bind="text: emp.department"></td>
-                            <td><button class="btn btn-xs btn-danger">Delete</button> </td>
+                            <td><button data-bind="click: () => $root.fireEmployee(emp)"
+                                        class="btn btn-danger">Delete</button> </td>
                         </tr>
                     </tbody>
                 </table>
